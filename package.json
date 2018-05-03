@@ -1,0 +1,18 @@
+{
+  "name": "pizza",
+  "version": "0.0.0",
+  "description": "Pizza database test",
+  "main": "server.js",
+  "author": "KK",
+  "dependencies": {
+    "express": "~4.7.2",
+    "mongoose": "~4.7.6",
+    "morgan": "~1.2.2",
+    "body-parser": "~1.5.2",
+    "method-override": "~2.1.2"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "license": "ISC"
+}

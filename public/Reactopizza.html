@@ -1,0 +1,112 @@
+<html>
+<head>
+   <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+<script>
+//DATA HERE
+
+var pizzaData = [
+	{name:'Supreme',
+	 price:8.99,
+	 spiciness:4,
+	 toppings:['pepperoni','chicken','pepper','ham','mushroom']
+	},
+	{name:'Hawaiian',
+	 price:5.99,
+	 spiciness:0,
+	 toppings:['ham','pineapple','mushroom']
+	},
+	{name:'BBQ chicken',
+	 price:6.99,
+	 spiciness:7,
+	 toppings:['BBQ sauce','chicken','pepper']
+	},
+	{name:'Hot One',
+	 price:7.50,
+	 spiciness:7,
+	 toppings:['hot chilli sauce','beef','pepperoni','jalapenos']
+	}
+	]
+
+var drinksData = [
+   {name:'Coke',
+   price:0.99},
+  {name:'Diet Coke',
+   price:0.99} ,
+ {name:'Fanta',
+   price:0.99},
+ {name:'Orange juice',
+   price:0.79}    
+   ];	
+
+</script>
+
+<script type="text/babel">   
+//Create a React class
+class Pizzas extends React.Component{
+   constructor(props) {
+    super(props);
+  }
+  render() {
+	 return(
+   <ul>
+     {pizzaData.map(function(pizza,i){		
+	    var toppingHTML = pizza.toppings.map(function(topping,i){
+		return <i>{topping}<br /></i>
+		})
+     return <div><strong>{pizza.name}............{pizza.price}</strong><br />{toppingHTML}<br/></div>
+     })}
+   </ul>
+ )
+  }
+}
+
+//Create a React class
+class Drinks extends React.Component{
+   constructor(props) {
+    super(props);
+  }
+  render() {
+	 return(
+         <ul>
+     {drinksData.map(function(drink,i){		
+	  
+     return <div><strong>{drink.name}............{drink.price}</strong><br/></div>
+     })}
+   </ul>
+ )
+  }
+}
+
+
+</script>
+</head>
+<body>
+<h1>Menu</h1>
+<div id="container"></div>
+<script type="text/babel">
+function renderPizzas() {
+  ReactDOM.render(<Pizzas/>, document.getElementById("container"));
+ }
+ 
+ function renderDrinks() {
+  ReactDOM.render(<Drinks/>, document.getElementById("container"));
+ }
+ 
+ renderPizzas();
+</script>
+
+
+	
+	<!--
+
+
+<div ng-repeat="drink in drinks" ng-show="menuSection=='Drinks'">
+	{{drink.name}} .............. {{drink.price}}		
+<br /><br />
+</div>
+-->
+<button onclick="renderPizzas()";">PIZZAS</button><button onclick="renderDrinks()";>DRINKS</button>
+</body>
+</html>

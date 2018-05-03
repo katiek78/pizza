@@ -1,0 +1,73 @@
+<html ng-app="pizzaModule">
+<head>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+<script>
+//DATA HERE
+var pizzaData = [
+	{name:'Supreme',
+	 price:8.99,
+	 spiciness:4,
+	 toppings:['pepperoni','chicken','pepper','ham','mushroom']
+	},
+	{name:'Hawaiian',
+	 price:5.99,
+	 spiciness:0,
+	 toppings:['ham','pineapple','mushroom']
+	},
+	{name:'BBQ chicken',
+	 price:6.99,
+	 spiciness:7,
+	 toppings:['BBQ sauce','chicken','pepper']
+	},
+	{name:'Hot One',
+	 price:7.50,
+	 spiciness:7,
+	 toppings:['hot chilli sauce','beef','pepperoni','jalapenos']
+	}
+	]
+
+var drinksData = [
+   {name:'Coke',
+   price:0.99},
+  {name:'Diet Coke',
+   price:0.99} ,
+ {name:'Fanta',
+   price:0.99},
+ {name:'Orange juice',
+   price:0.79}    
+   ];	
+	
+//ANGULAR STUFF BELOW HERE	
+var app = angular.module("pizzaModule", []);
+
+app.controller("pizzaCtrl", function($scope) {
+    
+	//we assign the data as a $scope variable so we can use Angular directives on it
+	$scope.pizzas = pizzaData;
+	$scope.drinks = drinksData;
+	$scope.menuSection = 'Pizzas';
+		
+	//can add other functions here to be used with Angular directives
+});
+</script>
+</head>
+<body ng-controller="pizzaCtrl">
+<h1>Menu</h1>
+	
+<div ng-repeat="pizza in pizzas | orderBy: 'name' | filter: '99'" ng-show="menuSection=='Pizzas'">	
+			<strong>{{pizza.name | uppercase}} .............. {{pizza.price | currency}}</strong><br>
+			<div ng-repeat="thing in pizza.toppings">
+			<i>{{thing}}</i>
+			<br />
+			</div>
+			<br />
+</div>
+
+<div ng-repeat="drink in drinks" ng-show="menuSection=='Drinks'">
+	{{drink.name}} .............. {{drink.price}}		
+<br /><br />
+</div>
+
+<button ng-click="menuSection='Pizzas';">PIZZAS</button><button ng-click="menuSection='Drinks';">DRINKS</button>
+</body>
+</html>
